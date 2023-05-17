@@ -1,0 +1,193 @@
+PROCESSADOR..PY
+
+
+O programa realiza o processamento de consultas em um arquivo XML e gera dois arquivos CSV: um contendo as consultas processadas e outro contendo os resultados esperados das consultas. Ele segue a seguinte lógica:
+
+Importa as bibliotecas necessárias: os, re, csv, logging, xml.etree.ElementTree e nltk.stem.PorterStemmer.
+
+Cria o diretório "logs", se ele não existir.
+
+Configura o logger para registrar informações no arquivo "logs/processador.log" usando o formato de log especificado.
+
+Define a função processador para processar as consultas.
+
+Inicializa as variáveis de configuração do programa, como o arquivo XML de entrada, o arquivo de consultas a ser gerado e o arquivo de resultados esperados a ser gerado.
+
+Define a variável stem como False e cria um objeto PorterStemmer da biblioteca NLTK.
+
+Abre o arquivo de configuração "PC.CFG.xml" e itera sobre as linhas.
+
+Verifica se a opção "STEMMER" está selecionada e define a variável stem como True. Registra essa escolha no log.
+
+Verifica se a opção "NOSTEMMER" está selecionada e define a variável stem como False.
+
+Trata as instruções "LEIA", "CONSULTAS" e "ESPERADOS" presentes no arquivo de configuração, atualizando as variáveis correspondentes.
+
+Abre o arquivo XML de entrada e os arquivos de consulta e resultados esperados em modo de gravação.
+
+Faz o parsing do arquivo XML e obtém a raiz.
+
+Cria um escritor CSV para o arquivo de consultas e escreve a primeira linha contendo os cabeçalhos.
+
+Cria um escritor CSV para o arquivo de resultados esperados e escreve a primeira linha contendo os cabeçalhos.
+
+Inicializa contadores para registrar o número de linhas lidas, linhas escritas no arquivo de consultas e linhas escritas no arquivo de resultados esperados.
+
+Itera sobre cada consulta presente na raiz do XML.
+
+Incrementa o contador de linhas lidas.
+
+Incrementa o contador de linhas escritas no arquivo de consultas.
+
+Obtém o número da consulta e o texto da consulta.
+
+Remove caracteres não alfabéticos do texto da consulta usando expressões regulares.
+
+Se a opção de stemming estiver ativada, aplica o stemmer do NLTK nas palavras do texto da consulta.
+
+Escreve uma linha no arquivo de consultas contendo o número da consulta e o texto da consulta em letras maiúsculas.
+
+Obtém os registros associados à consulta.
+
+Itera sobre cada registro e incrementa o contador de linhas escritas no arquivo de resultados esperados.
+
+Obtém o score do registro e calcula a quantidade de votos diferentes de zero.
+
+Escreve uma linha no arquivo de resultados esperados contendo o número da consulta, o número do documento e a quantidade de votos.
+
+Registra informações sobre a conclusão do processamento no log.
+
+Define a função main que chama a função processador.
+
+Verifica se o programa está sendo executado diretamente e, em seguida, chama a função main.
+
+O programa lê o arquivo de configuração, processa o arquivo XML de consultas de acordo com as configurações especificadas e gera os arquivos CSV contendo as consultas processadas e os resultados esperados. Os registros de log são salvos no arquivo "logs/processador.log"
+
+
+
+
+GERADOR.PY
+
+
+O programa realiza a leitura de um arquivo XML, processa o texto contido nele e gera um arquivo CSV com a lista invertida (GLI - inverted list). Ele segue a seguinte lógica:
+
+Importa as bibliotecas necessárias: os, re, csv, logging, xml.etree.ElementTree, defaultdict e sys.
+
+Cria os diretórios "logs" e "results", se eles não existirem.
+
+Configura o logger para registrar informações no arquivo "logs/gerador.log" usando o formato de log especificado.
+
+Define a função read para ler o arquivo de configuração "GLI.CFG.xml" e processar o arquivo XML especificado nele.
+
+Inicializa variáveis e define a opção de stemming das palavras, se configurada.
+
+Abre o arquivo de configuração e itera sobre as linhas.
+
+Se a opção "STEMMER" for selecionada, importa o stemmer da biblioteca NLTK e define a variável stem como True.
+
+Se a opção "NOSTEMMER" for selecionada, define a variável stem como False.
+
+Trata as instruções "LEIA" e "ESCREVA" presentes no arquivo de configuração.
+
+No caso da instrução "LEIA", abre o arquivo XML especificado e processa seu conteúdo.
+
+Extrai o texto relevante de cada registro do arquivo XML e realiza o pré-processamento: remove caracteres não alfabéticos, divide o texto em palavras e, se a opção de stemming estiver ativada, aplica o stemmer nas palavras.
+
+Armazena as palavras e os números de registro correspondentes no dicionário gli_dict.
+
+No caso da instrução "ESCREVA", retorna o nome do arquivo especificado e o dicionário gli_dict para serem gravados posteriormente.
+
+Define a função write para gravar o dicionário gli_dict em um arquivo CSV.
+
+Abre o arquivo CSV especificado em modo de gravação e escreve as linhas correspondentes às palavras e seus números de registro.
+
+Registra informações sobre a conclusão da escrita no arquivo.
+
+Define a função main que chama as funções read e write.
+
+Verifica se o programa está sendo executado diretamente e, em seguida, chama a função main.
+
+O programa lê o arquivo de configuração, processa o arquivo XML de acordo com as configurações especificadas e gera o arquivo CSV contendo a lista invertida (GLI). Os registros de log são salvos no arquivo "logs/gerador.log". O arquivo CSV é salvo no diretório "results".
+
+
+
+
+INDEXADOR.PY
+
+
+
+
+O programa realiza a indexação de um conjunto de documentos de texto com base em um arquivo de configuração. Ele segue a seguinte lógica:
+
+Importa as bibliotecas necessárias: re, math e xml.etree.ElementTree.
+
+Define a função read_config_file para ler o arquivo de configuração e extrair as informações relevantes. O arquivo de configuração deve ter elementos XML com as tags 'LEIA', 'ESCREVA' e 'FREQUÊNCIA'. Esses elementos representam os nomes dos arquivos de entrada, saída e a opção de frequência utilizada.
+
+Define a função read_text_file para ler o conteúdo de um arquivo de texto.
+
+Define a função write_text_file para escrever o conteúdo em um arquivo de texto.
+
+Define a função tokenize_text para dividir o texto em tokens. Utiliza expressões regulares para encontrar palavras completas.
+
+Define a função calculate_tf para calcular a frequência de termo (TF) de uma palavra em um documento. Conta o número de ocorrências da palavra no documento e divide pelo tamanho do documento.
+
+Define a função calculate_idf para calcular o inverso da frequência de documento (IDF) de uma palavra em um conjunto de documentos. Conta o número de documentos em que a palavra ocorre e calcula o logaritmo do inverso da razão entre o número total de documentos e o número de documentos em que a palavra ocorre.
+
+Define a função index_documents para criar o índice dos documentos. Itera sobre cada documento, tokeniza o texto, realiza pré-processamento (como converter para letras maiúsculas e remover palavras com menos de 2 caracteres ou não alfabéticas), e calcula o TF-IDF (produto de TF e IDF) para cada palavra em cada documento. O índice é uma estrutura de dados que armazena a pontuação TF-IDF de cada palavra em cada documento.
+
+Define a função save_index para salvar o índice em um arquivo. Converte o índice em uma string formatada e escreve no arquivo.
+
+Define a função load_index para carregar o índice de um arquivo. Lê o conteúdo do arquivo, processa cada linha e reconstrói o índice como um dicionário.
+
+Define a função index_files para executar a indexação dos arquivos. Lê as informações do arquivo de configuração, lê os documentos de texto a partir do arquivo de entrada, indexa os documentos e salva o índice no arquivo de saída.
+
+Chama a função index_files passando o caminho do arquivo de configuração como argumento.
+
+O programa lê os documentos de texto especificados no arquivo de configuração, realiza a indexação e salva o índice resultante no arquivo especificado.
+
+
+
+
+BUSCADOR.PY
+
+O programa é um buscador que processa consultas e gera resultados baseados em um modelo vetorial. Ele realiza as seguintes etapas:
+
+Importa as bibliotecas necessárias: os, csv, logging, xml.etree.ElementTree e numpy.
+
+Cria um diretório "logs" para armazenar os registros de log.
+
+Configura o logger para registrar informações no arquivo "logs/buscador.log" usando o formato de log especificado.
+
+Define a função buscador que implementa a lógica principal do programa.
+
+Inicializa variáveis e lê o arquivo de configuração "BUSCA.CFG.xml" para obter as configurações necessárias, como o uso de "stemmer", nomes de arquivos de modelo, consultas, resultados e tipo de similaridade.
+
+Cria um dicionário matrix_dict para armazenar as informações do modelo vetorial.
+
+Abre o arquivo do modelo e lê suas linhas, adicionando as informações relevantes ao dicionário matrix_dict.
+
+Cria um elemento raiz "Results" para armazenar os resultados em formato XML.
+
+Abre o arquivo de consultas e itera sobre as linhas, processando cada consulta.
+
+Cria um dicionário query_dict para armazenar as informações de similaridade entre a consulta atual e os documentos.
+
+Separa as palavras da consulta, filtrando aquelas com comprimento mínimo especificado.
+
+Calcula o vetor da consulta e multiplica as ponderações do modelo vetorial correspondentes às palavras da consulta.
+
+Para o tipo de similaridade escolhido (cosseno), normaliza os valores da consulta dividindo pelo produto das normas dos vetores da consulta e do documento.
+
+Classifica as informações de similaridade em ordem decrescente.
+
+Cria elementos XML para cada documento relevante e adiciona-os ao elemento de consulta correspondente.
+
+Escreve o resultado final no arquivo especificado em formato XML.
+
+Registra informações sobre a conclusão do processamento das consultas e a escrita dos resultados.
+
+Define a função main que chama a função buscador.
+
+Verifica se o programa está sendo executado diretamente e, em seguida, chama a função main.
+
+Esse programa lê um arquivo de configuração, um arquivo de consultas e um arquivo de modelo vetorial. Ele processa as consultas usando o modelo vetorial e gera os resultados correspondentes em um formato XML. Os registros de log são salvos no arquivo "logs/buscador.log".

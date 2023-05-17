@@ -1,0 +1,4 @@
+
+leia = 'C:/Users/aloli/Desktop/Python/Nova pasta/CysticFibrosis2-20230406/data/cfquery.xml'
+CONSULTAS='consultas.csv'
+ESPERADOS='esperados.csv'

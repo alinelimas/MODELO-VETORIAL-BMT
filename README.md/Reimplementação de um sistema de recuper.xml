@@ -1,0 +1,19 @@
+Reimplementação de um sistema de recuperação em memória usando o modelo vetorial.
+
+Módulos:
+
+processador.py - Processa consultas.
+gerador.py - Gera lista invertida.
+indexador.py - Cria o modelo vetorial.
+buscador.py - Realiza a busca e gera os resultados finais.
+avaliador.py - Gera gráficos e arquivos de avaliação.
+metricas.py - Contém medidas de avaliação do sistema.
+Arquivos gerados pelo sistema:
+
+consultas.csv: Lista todas as consultas processadas.
+esperados.csv: Lista o número do documento e seu número de votos.
+gli.csv: Lista as palavras e os índices dos documentos em que cada palavra aparece.
+modelo.csv: Especifica o modelo vetorial.
+resultados.csv: Lista o ranking, índice e grau de similaridade dos 5 documentos mais relevantes para cada consulta.
+Execução:
+Os módulos devem ser executados na ordem 1 -> 2 -> 3 -> 4 -> 5. Caso os arquivos da pasta "results" já tenham sido gerados, os módulos podem ser executados em qualquer ordem.

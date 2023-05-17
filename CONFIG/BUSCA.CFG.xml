@@ -1,0 +1,5 @@
+NOSTEMMER
+MODELO=modelo.csv
+CONSULTAS=consultas.csv
+RESULTADOS=resultados.csv
+SIMILARIDADE=produto interno

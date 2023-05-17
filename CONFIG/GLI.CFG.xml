@@ -1,0 +1,9 @@
+
+STEMMER
+LEIA=/CysticFibrosis2-20230406/data/cf74.xml
+LEIA=/CysticFibrosis2-20230406/data/cf75.xml
+LEIA=/CysticFibrosis2-20230406/data/cf76.xml
+LEIA=/CysticFibrosis2-20230406/data/cf77.xml
+LEIA=/CysticFibrosis2-20230406/data/cf78.xml
+LEIA=/CysticFibrosis2-20230406/data/cf79.xml
+ESCREVA=/gli.csv
